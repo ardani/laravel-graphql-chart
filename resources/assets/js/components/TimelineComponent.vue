@@ -16,31 +16,11 @@
                 count: feed_count
                 date
               }
-            }
-            `,
-        variables: {
-          start_at: moment().format('YYYY-M-1'),
-          end_at: moment().endOf('month').format('YYYY-M-D')
-          ,
-        },
-      },
-      twitter: {
-        query: gql`query fetchTimelines($start_at: String!, $end_at: String!) {
-              twitter: timelines(type: 2, start_at: $start_at, end_at: $end_at) {
+               twitter: timelines(type: 2, start_at: $start_at, end_at: $end_at) {
                 id
                 count: feed_count
                 date
               }
-            }
-            `,
-        variables: {
-          start_at: moment().format('YYYY-M-1'),
-          end_at: moment().endOf('month').format('YYYY-M-D')
-          ,
-        },
-      },
-      retweet: {
-        query: gql`query fetchTimelines($start_at: String!, $end_at: String!) {
               retweet: timelines(type: 2, start_at: $start_at, end_at: $end_at) {
                 id
                 count: feed_retweet_count
@@ -51,9 +31,11 @@
         variables: {
           start_at: moment().format('YYYY-M-1'),
           end_at: moment().endOf('month').format('YYYY-M-D')
-          ,
         },
-      }
+        update({facebook, twitter, retweet}) {
+          return this.timelines = {facebook, twitter, retweet}
+        }
+      },
     },
     created: function () {
       let last = moment().daysInMonth();
@@ -69,33 +51,33 @@
       this.chartOptions.xAxis.categories = days
     },
     watch: {
-      facebook: function (vals) {
-        const count = this.filterData(vals);
+      timelines: function ({facebook, twitter, retweet}) {
+        let count = this.filterData(facebook);
         this.chartOptions.series.push({
           name: 'facebook',
           data: count
-        })
-      },
-      twitter: function (vals) {
-        const count = this.filterData(vals);
+        });
+
+        count = this.filterData(twitter);
         this.chartOptions.series.push({
           name: 'twitter',
           data: count
-        })
-      },
-      retweet: function (vals) {
-        const count = this.filterData(vals);
+        });
+
+        count = this.filterData(retweet);
         this.chartOptions.series.push({
           name: 'retweet',
           data: count
-        })
-      }
+        });
+      },
     },
     data: () => ({
       updateArgs: [true, true, {duration: 1000}],
-      facebook: null,
-      twitter: null,
-      retweet: null,
+      timelines: {
+        facebook: null,
+        twitter: null,
+        retweet: null
+      },
       chartOptions: {
         title: {
           text: 'Facebook Twitter Metrics'
