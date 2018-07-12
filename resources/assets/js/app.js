@@ -2,6 +2,10 @@ import Vue from 'vue'
 import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
+import HighchartsVue from 'highcharts-vue'
+import BootstrapVue from 'bootstrap-vue'
+
+
 import VueApollo from 'vue-apollo'
 
 const httpLink = new HttpLink({
@@ -31,8 +35,13 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.use(VueApollo);
+Vue.use(HighchartsVue);
+Vue.use(BootstrapVue);
+
+Vue.component('feeds', require('./components/FeedComponent.vue'));
+Vue.component('timelines', require('./components/TimelineComponent.vue'));
+
 
 const apolloProvider = new VueApollo({
   defaultClient: apolloClient,

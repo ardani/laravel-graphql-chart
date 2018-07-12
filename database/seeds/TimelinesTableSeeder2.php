@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TimelinesTableSeeder extends Seeder
+class TimelinesTableSeeder2 extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class TimelinesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Timeline::class, 50)->create(['type' => 1]);
+        factory(App\Timeline::class, 50)->create(['type' => 2]);
     }
 }

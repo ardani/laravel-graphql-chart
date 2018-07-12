@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-header">Get Feeds Data</div>
                 <div class="card-body">
-
+                    <feeds></feeds>
                 </div>
             </div>
         </div>

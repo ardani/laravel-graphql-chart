@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/timeline', 'HomeController@timeline')->name('timeline');
 
 Route::get('/test', function () {
     return \App\Feed::get();

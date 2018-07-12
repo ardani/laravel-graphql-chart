@@ -18,7 +18,7 @@ class TimelinesQuery extends Query
 
     public function type()
     {
-        return GraphQL::paginate('timelines');
+        return Type::listOf(GraphQL::type('timelines'));
 
     }
 
@@ -37,13 +37,9 @@ class TimelinesQuery extends Query
                 'name' => 'end_at',
                 'type' => Type::string()
             ],
-            'limit' => [
-                'name' => 'limit',
-                'type' => Type::INT(),
-            ],
-            'page' => [
-                'name'=> 'page',
-                'type'=>Type::INT()
+            'retweet' => [
+                'name' => 'retweet',
+                'type' => Type::boolean(),
             ]
         ];
     }
@@ -68,6 +64,7 @@ class TimelinesQuery extends Query
 
         return Timeline::select($select)
             ->where($where)
-            ->paginate($args['limit'], ['*'], 'page', $args['page']);
+            ->orderBy('date')
+            ->get();
     }
 }
