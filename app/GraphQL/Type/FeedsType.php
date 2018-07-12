@@ -21,6 +21,11 @@ class FeedsType extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of the feed'
             ],
+            'message_formatted' => [
+                'type' => Type::string(),
+                'selectable' => false,
+                'description' => 'The message of the feed'
+            ],
             'message' => [
                 'type' => Type::string(),
                 'description' => 'The message of the feed'

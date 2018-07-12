@@ -10,7 +10,7 @@ class Feed extends Model
         'message', 'type', 'user_id', 'parent_id'
     ];
 
-    protected $appends = ['social', 'retweet'];
+    protected $appends = ['social', 'retweet', 'message_formatted'];
 
     public function user()
     {
@@ -22,13 +22,14 @@ class Feed extends Model
         return $this->attributes['type'] == 1 ? 'facebook' : 'twitter';
     }
 
+    public function getMessageFormattedAttribute()
+    {
+        return $this->attributes['parent_id'] == 0 ? $this->attributes['message'] : $this->retweet()->first()->message;
+    }
+
     public function getRetweetAttribute()
     {
-        if ($this->attributes['parent_id'] > 0) {
-            return $this->retweet()->first()->message;
-        } else {
-            return '';
-        }
+        return $this->attributes['parent_id'] > 0 ? 'true' : 'false';
     }
 
     public function retweet()

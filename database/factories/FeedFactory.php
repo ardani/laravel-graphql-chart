@@ -2,13 +2,14 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\App\Feed::class, function (Faker $faker) {
+$factory->define(\App\Feed::class, function (Faker $faker, $options) {
     $user = App\User::inRandomOrder()->first();
-    $parent = array_random([0, rand(1, 10)]);
+    $feed = App\Feed::inRandomOrder()->where('parent_id', 0)->first();
+    $retweet = array_key_exists('parent_id', $options);
     return [
-        'message' => $parent ? null : $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'type' => array_random([1, 2]),
+        'message' => $retweet ? null : $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'type' => $retweet ? 1 : array_random([1, 2]),
         'user_id' => $user->id,
-        'parent_id' => $parent
+        'parent_id' => $retweet ? $feed->id : 0
     ];
 });

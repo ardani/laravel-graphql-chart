@@ -12,6 +12,7 @@
             feeds(limit: $limit, page: $page) {
                data {
                   id,
+                  message_formatted,
                   message,
                   type,
                   retweet,
@@ -34,7 +35,7 @@
     data: () => ({
       fields: [
         {
-          key: 'message',
+          key: 'message_formatted',
           sortable: false,
           label: 'Message'
         },
@@ -57,9 +58,6 @@
       feeds: [],
       limit: 10,
       page: 1
-    }),
-    methods: {
-
-    },
+    })
   }
 </script>

@@ -91332,7 +91332,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_tag__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_graphql_tag___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_graphql_tag__);
-var _templateObject = _taggedTemplateLiteral(['query fetchFeeds($limit: Int!, $page: Int!) {\n          feeds(limit: $limit, page: $page) {\n             data {\n                id,\n                message,\n                type,\n                retweet,\n                social,\n                parent_id,\n                user {\n                  name\n                }\n              },\n              current_page,\n              total\n            }\n          }'], ['query fetchFeeds($limit: Int!, $page: Int!) {\n          feeds(limit: $limit, page: $page) {\n             data {\n                id,\n                message,\n                type,\n                retweet,\n                social,\n                parent_id,\n                user {\n                  name\n                }\n              },\n              current_page,\n              total\n            }\n          }']);
+var _templateObject = _taggedTemplateLiteral(['query fetchFeeds($limit: Int!, $page: Int!) {\n          feeds(limit: $limit, page: $page) {\n             data {\n                id,\n                message_formatted,\n                message,\n                type,\n                retweet,\n                social,\n                parent_id,\n                user {\n                  name\n                }\n              },\n              current_page,\n              total\n            }\n          }'], ['query fetchFeeds($limit: Int!, $page: Int!) {\n          feeds(limit: $limit, page: $page) {\n             data {\n                id,\n                message_formatted,\n                message,\n                type,\n                retweet,\n                social,\n                parent_id,\n                user {\n                  name\n                }\n              },\n              current_page,\n              total\n            }\n          }']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -91356,7 +91356,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
   data: function data() {
     return {
       fields: [{
-        key: 'message',
+        key: 'message_formatted',
         sortable: false,
         label: 'Message'
       }, {
@@ -91376,8 +91376,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
       limit: 10,
       page: 1
     };
-  },
-  methods: {}
+  }
 });
 
 /***/ }),
