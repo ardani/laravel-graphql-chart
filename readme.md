@@ -15,6 +15,9 @@ What things you need to install the software and how to install them
 2. install graphiql -> https://electronjs.org/apps/graphiql
 ```
 
+after install graphiql you can see structure graphql with url `http://localhost:8000/graphql`
+![preview](https://monosnap.com/image/UJd3oDux5mYj2JPdmtqjsW63774s0o.png)
+
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
@@ -24,7 +27,7 @@ A step by step series of examples that tell you how to get a development env run
 ```
 composer install
 ```
-3. copy .env.example to .env
+3. copy .env.example to .env and don't forget change your setting of database 
 4. install vue dependencies
 ```
 yarn
@@ -52,8 +55,6 @@ End with an example of getting some data out of the system or using it for a lit
 ## Running the tests
 
 Explain how to run the automated tests for this system
-
-
 
 ## Built With
 
